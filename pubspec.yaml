@@ -1,4 +1,4 @@
-name: visibility_widget
+name: scroll_visibility
 description: Flutter widget enabling programmatically scrolling widgets into view 
 version: 0.0.1
 author:

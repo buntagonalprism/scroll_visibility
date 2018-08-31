@@ -5,13 +5,13 @@ import 'dart:async';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
+/// A widget that allows programmatic scrolling into view
 ///
-/// Inspired by Colin Jackson https://gist.github.com/collinjackson/50172e3547e959cba77e2938f2fe5ff5
+/// Scrolling logic from by Collin Jackson
+/// https://gist.github.com/collinjackson/50172e3547e959cba77e2938f2fe5ff5
+class ScrollVisibility extends StatefulWidget {
 
-
-class VisibilityWidget extends StatefulWidget {
-
-  VisibilityWidget({
+  ScrollVisibility({
     Key key,
     @required this.child,
     @required this.visibilityNode,
@@ -26,7 +26,7 @@ class VisibilityWidget extends StatefulWidget {
 
   /// The node identifying this visibility widget. Create nodes and then call [makeVisible] on them
   /// to request a widget be scrolled into view
-  final VisibilityNode visibilityNode;
+  final ScrollVisibilityNode visibilityNode;
 
   /// The curve we will use to scroll ourselves into view.
   ///
@@ -39,10 +39,10 @@ class VisibilityWidget extends StatefulWidget {
   final Duration duration;
 
   @override
-  _VisibilityWidgetState createState() => _VisibilityWidgetState();
+  _ScrollVisibilityState createState() => _ScrollVisibilityState();
 }
 
-class _VisibilityWidgetState extends State<VisibilityWidget> {
+class _ScrollVisibilityState extends State<ScrollVisibility> {
 
   @override
   void initState() {
@@ -85,7 +85,7 @@ class _VisibilityWidgetState extends State<VisibilityWidget> {
 
 }
 
-class VisibilityNode {
+class ScrollVisibilityNode {
   VoidCallback _makeVisible;
   void makeVisible() {
     if (_makeVisible != null) {
@@ -105,7 +105,7 @@ class VisibilityNode {
   /// Otherwise, if the error was not present at the time the visibility widget started to scroll,
   /// error text may not be scrolled into view since the scroll calculations were performed before
   /// the error existed.
-  static void scrollNonNullErrorIntoView(Map<VisibilityNode, String> errorNodes, {int delayMs = 64}) async {
+  static void scrollNonNullErrorIntoView(Map<ScrollVisibilityNode, String> errorNodes, {int delayMs = 64}) async {
     if (delayMs != null) {
       await Future.delayed(Duration(milliseconds: delayMs));
     }
