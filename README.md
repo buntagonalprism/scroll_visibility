@@ -1,9 +1,6 @@
-# visibility_widget
+# Scroll Visibility
 
-Flutter widget enabling programmatically scrolling widgets into view 
+Flutter widget enabling programmatically scrolling specified widgets into view. Helpful for drawing user's attention to fields with errors during input validation or for highlighting interesting content. 
 
-## Getting Started
+Each widget to be scrolled into view needs a seperate scroll visibility node to identify it so this solution is not intended for scrolling through a large number of items in a ListView (instead consider interacting directly with the scroll controller). 
 
-For help getting started with Flutter, view our online [documentation](https://flutter.io/).
-
-For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
