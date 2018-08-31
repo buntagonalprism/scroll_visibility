@@ -45,13 +45,8 @@ class ScrollVisibility extends StatefulWidget {
 class _ScrollVisibilityState extends State<ScrollVisibility> {
 
   @override
-  void initState() {
-    super.initState();
-    widget.visibilityNode._makeVisible = makeVisible;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    widget.visibilityNode._makeVisible = makeVisible;
     return widget.child;
   }
 
@@ -81,6 +76,12 @@ class _ScrollVisibilityState extends State<ScrollVisibility> {
       duration: widget.duration,
       curve: widget.curve,
     );
+  }
+
+  @override
+  void dispose() {
+    widget.visibilityNode._makeVisible = null;
+    super.dispose();
   }
 
 }
