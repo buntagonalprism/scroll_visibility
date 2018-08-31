@@ -1,5 +1,7 @@
 library visibility_widget;
 
+import 'dart:async';
+
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
@@ -91,7 +93,22 @@ class VisibilityNode {
     }
   }
 
-  static void scrollFirstNonNullIntoView(Map<VisibilityNode, String> errorNodes) {
+  /// Helper function to scroll nodes with errors displayed into view
+  ///
+  /// [errorNodes] input is a map between visibility nodes and an error message contained within the
+  /// corresponding visibility widget - typically the errorText value of a TextField
+  ///
+  /// Intended for when form input validation has occurred and we want to reveal the first field
+  /// with an error. The first node with a non-null error will be scrolled into view.
+  ///
+  /// The [delayMs] parameter defaults to about 4 frames worth to allow error text to be drawn.
+  /// Otherwise, if the error was not present at the time the visibility widget started to scroll,
+  /// error text may not be scrolled into view since the scroll calculations were performed before
+  /// the error existed.
+  static void scrollNonNullErrorIntoView(Map<VisibilityNode, String> errorNodes, {int delayMs = 64}) async {
+    if (delayMs != null) {
+      await Future.delayed(Duration(milliseconds: delayMs));
+    }
     for (var node in errorNodes.keys) {
       String error = errorNodes[node];
       if (error != null) {
