@@ -90,4 +90,14 @@ class VisibilityNode {
       _makeVisible();
     }
   }
+
+  static void scrollFirstNonNullIntoView(Map<VisibilityNode, String> errorNodes) {
+    for (var node in errorNodes.keys) {
+      String error = errorNodes[node];
+      if (error != null) {
+        node.makeVisible();
+        return;
+      }
+    }
+  }
 }
